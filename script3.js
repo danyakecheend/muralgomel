@@ -189,8 +189,10 @@ if (document.getElementById('particles-js')) {
     }
 
 document.addEventListener('DOMContentLoaded', function () {
+    // 1. Определяем текущий язык (по умолчанию — русский)
     const savedLang = localStorage.getItem('lang') || 'ru';
 
+    // 2. Если пользователь не на своей языковой версии, перенаправляем его
     const currentPage = window.location.pathname;
     if (currentPage.endsWith('index.html') && savedLang === 'by') {
         window.location.href = 'index_by.html';
@@ -203,13 +205,17 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
+    // 3. Настраиваем кнопку переключения языка
     const toggleButton = document.getElementById('language-toggle');
     toggleButton.addEventListener('click', function () {
+        // Определяем текущий язык и переключаем
         const currentLang = localStorage.getItem('lang') || 'ru';
         const newLang = currentLang === 'ru' ? 'by' : 'ru';
 
+        // Сохраняем выбранный язык
         localStorage.setItem('lang', newLang);
 
+        // Перенаправляем на соответствующую версию текущей страницы
         if (currentPage.endsWith('index.html') || currentPage.endsWith('index_by.html')) {
             window.location.href = newLang === 'ru' ? 'index.html' : 'index_by.html';
         } else {
@@ -218,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
+    // 4. Обновляем ссылки на странице для текущего языка
     document.querySelectorAll('a').forEach(link => {
         const currentLang = localStorage.getItem('lang') || 'ru';
         if (link.href.includes('_ru.html') || link.href.includes('_by.html')) {
@@ -228,5 +235,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-
