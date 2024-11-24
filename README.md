@@ -1,1 +1,0 @@
-# muralsgomel.github.io
